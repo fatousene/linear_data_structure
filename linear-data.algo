@@ -1,0 +1,133 @@
+/*trouver la somme de tout les elements presents dans l'un ou l'autre des enesembles  
+soluton n°1
+on utilise deux tableaux */
+ALGORITHM sum_of_elements
+VAR
+    set1 : ARRAY_OF INTEGER[5];
+    set2 : ARRAY_OF INTEGER[8];
+    i,X,sum,sum0;count :INTEGER;
+BEGIN
+    sum :=0;
+    sum0 :=0;
+    count :=1;
+    FOR i FROM 0 TO set1.length-1 STEP step DO
+    //remplissage du premier tableau
+       WRITE("donner l'element qui est à l'index",i);
+       READ(X);
+    FOR i FROM 0 TO set2.length-1 STEP step DO 
+    //remplissage du deuxieme tableau
+       WRITE("donner l'element qui est à l'index",i);
+       READ(X);
+
+          IF (set1[i] <> set2[i]) THEN
+                sum = sum + set1[i];
+          END_IF
+          IF (set2[i] <> set1[i]) THEN
+               sum= sum + set2[i];
+          END_IF
+// additionner tout les elements des deux ensembles 
+          WHILE (count==set.length and count==set.length) DO
+                sum0= set1[i] + set2[i];
+          END_WHILE
+    END_FOR   
+    END_FOR
+END
+
+/*soluton n°2
+on utilise hash_table */
+
+ALGORITHM sum_of_elements
+VAR
+     ensemble1 : HASH_TABLE<INTEGER,INTEGER>;
+     ensemble2 : HASH_TABLE<INTEGER,INTEGER>;
+     i,j,n,m,X,sum: INTEGER;
+BEGIN 
+       sum :=0;
+       WRITE(" donner la taille de l'ensemble1");
+       READ(n); 
+       WRITE(" donner la taille de l'ensemble2");
+       READ(m);
+   FOR i FROM 0 TO n-1 STEP step 1 DO
+       WRITE("donner la valeur qui a la clef " , i); 
+       READ(j);
+       ensemble1.insert(i,j);
+       X :=ensemble1.get(i);
+       IF (ensemble2.search(X)==false) THEN
+             sum = sum + X ;
+       END_IF
+   END_FOR 
+   FOR i FROM 0 TO m-1 STEP step 1 DO
+       WRITE("donner la valeur qui a la clef " , i); 
+       READ(j);
+       ensemble2.insert(i,j);
+       X :=ensemble2.get(i);
+       IF (ensemble1.search(X)==false) THEN
+             sum = sum + X;
+       END_IF
+   END_FOR 
+
+END
+/* probleme n°2  la somme des elements qui se chevauchent dans les deux ensembles 
+solution n°1
+on utilise deux tableaux  */
+ALGORITHM sum_of_elements
+VAR
+    set1 : ARRAY_OF INTEGER[5];
+    set2 : ARRAY_OF INTEGER[8];
+    i,X,sum:INTEGER;
+BEGIN
+   sum :=0;
+    FOR i FROM 0 TO set1.length-1 STEP step DO
+    //remplissage du premier tableau
+       WRITE("donner l'element qui est à l'index",i);
+       READ(X);
+    FOR i FROM 0 TO set2.length-1 STEP step DO 
+    //remplissage du deuxieme  tableau
+        WRITE("donner l'element qui est à l'index",i);
+        READ(X);
+
+           IF (set1[i]=set2[i]) THEN
+                 sum= sum + set1[i];
+           END_IF
+           IF (set2[i]=set1[i]) THEN
+                 sum= sum + set2[i];
+           END_IF
+    END_FOR   
+    END_FOR
+END
+
+/*solution n°1
+on utilise hash_table */
+
+ALGORITHM sum_of_elements
+VAR
+     ensemble1 : HASH_TABLE<INTEGER,INTEGER>;
+     ensemble2 : HASH_TABLE<INTEGER,INTEGER>;
+     i,j,n,m,X,sum: INTEGER;
+BEGIN 
+       sum :=0;
+       WRITE(" donner la taille de l'ensemble1");
+       READ(n); 
+       WRITE(" donner la taille de l'ensemble2");
+       READ(m);
+   FOR i FROM 0 TO n-1 STEP step 1 DO
+       WRITE("donner la valeur qui a la clef " , i); 
+       READ(j);
+       ensemble1.insert(i,j);
+       X :=ensemble1.get(i);
+       IF (ensemble2.search(X)==true) THEN
+             sum = sum + X ;
+       END_IF
+   END_FOR 
+   FOR i FROM 0 TO m-1 STEP step 1 DO
+       WRITE("donner la valeur qui a la clef " , i); 
+       READ(j);
+       ensemble2.insert(i,j);
+       X :=ensemble2.get(i);
+       IF (ensemble1.search(X)==true) THEN
+             sum = sum + X;
+       END_IF
+   END_FOR 
+
+END
+
